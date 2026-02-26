@@ -14,6 +14,7 @@ public class EntityManagerProduce {
 	private EntityManagerFactory emf;
 	
 	public EntityManagerProduce() {
+		
 		this.emf = Persistence.createEntityManagerFactory("TarefasPU");
 	}
 	

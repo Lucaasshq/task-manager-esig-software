@@ -20,4 +20,4 @@ COPY --from=build /app/target/task-esig.war webapps/ROOT.war
 # Porta padrãoo
 EXPOSE 8080
 
-CMD ["sh", "-c", "catalina.sh run -Ddb.url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -Ddb.user=${PGUSER} -Ddb.password=${PGPASSWORD}"]
+CMD ["sh", "-c", "catalina.sh run -DDB_URL_COMPLETA=${DATABASE_URL}"]

@@ -13,13 +13,7 @@
         <properties>
         <!-- Driver JDBC -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <!-- URL do banco de dados -->
-            <property name="javax.persistence.jdbc.url" value="#{systemProperties['db.url']}"/>
-            
-            
-            <!-- Usuário e senha -->
-            <property name="javax.persistence.jdbc.user" value="#{systemProperties['db.user']}"/>
-            <property name="javax.persistence.jdbc.password" value="#{systemProperties['db.password']}"/>
+            <property name="javax.persistence.jdbc.url" value="${DB_URL_COMPLETA}" />
             
             <!-- Propriedades específicas do Hibernate -->
             <property name="javax.persistence.schema-generation.create-source" value="metadata"/>

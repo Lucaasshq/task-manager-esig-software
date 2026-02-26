@@ -43,7 +43,7 @@ Sistema Web para gerenciamento de tarefas, desenvolvido como parte de um desafio
 - Abri Projeto no eclipse
 - Na raiz do projeto onde está o docker-compose.yml digite:
   ```docker-compose up -d``` para subir o banco
-- adicione o apache tomcat 9 como servidor, ele está no projeto ```apache-tomcat-9.0.115```
+- adicione o apache tomcat 9 como servidor, ele está no projeto ```apache-tomcat-9.0.115``` e adicione o projeto dentro do tomcat
   
 Inicie o projeto em ```http://localhost:8080/task-esig/login.xhtml```
 - obs fiz o deploy mas por eu estar usando tomcat não consegui conectar ao banco atráves das váriaveis de ambiente

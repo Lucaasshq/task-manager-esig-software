@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <display-name>cadastro-empresas</display-name>
-  
-  
-  <welcome-file-list>
+	<display-name>cadastro-empresas</display-name>
+
+	<resource-ref>
+		<description>PostgreSQL Datasource</description>
+		<res-ref-name>jdbc/tarefasDS</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
+
+	<welcome-file-list>
 		<!-- Arquivo de boas-vindas para a aplicacao -->
 		<welcome-file>tarefaFormulario.xhtml</welcome-file>
-  </welcome-file-list>
+	</welcome-file-list>
 
 
 	<!-- Configuracao de parametros de contexto para o JSF -->

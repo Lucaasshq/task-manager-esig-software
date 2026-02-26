@@ -17,20 +17,6 @@ public class EntityManagerProduce {
 	private EntityManagerFactory emf;
 
 	public EntityManagerProduce() {
-		Map<String, String> properties = new HashMap<>();
-
-		// Pega as variáveis que o Railway fornece automaticamente
-		String host = System.getenv("PGHOST");
-		String port = System.getenv("PGPORT");
-		String dbName = System.getenv("PGDATABASE");
-		String user = System.getenv("PGUSER");
-		String password = System.getenv("PGPASSWORD");
-
-		String url = "jdbc:postgresql://" + host + ":" + port + "/" + dbName;
-
-		properties.put("javax.persistence.jdbc.url", url);
-		properties.put("javax.persistence.jdbc.user", user);
-		properties.put("javax.persistence.jdbc.password", password);
 		this.emf = Persistence.createEntityManagerFactory("TarefasPU");
 	}
 	

@@ -7,5 +7,12 @@
 		auth="Container"
 		name="BeanManager"
 		type="javax.enterprise.inject.spi.BeanManager"
-		factory="org.jboss.weld.resources.ManagerObjectFactory"/>
+		factory="org.jboss.weld.resources.ManagerObjectFactory"
+		driverClassName="org.postgresql.Driver"
+        url="jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}"
+        username="${PGUSER}"
+        password="${PGPASSWORD}"
+        maxTotal="20"
+        maxIdle="10"
+        maxWaitMillis="10000"/>
 </Context>

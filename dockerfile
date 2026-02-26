@@ -9,10 +9,9 @@ FROM tomcat:9.0-jdk8-openjdk-slim
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # Copia o arquivo .war gerado no estágio de build para o Tomcat
-# Certifique-se de que o nome do .war no seu pom.xml coincide (ou use *.war)
 COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
 
 # Comando para iniciar o Tomcat
-CMD ["catalina.sh", "run"]
+CMD ["sh", "-c", "catalina.sh run -Ddb.url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -Ddb.user=${PGUSER} -Ddb.password=${PGPASSWORD}"]

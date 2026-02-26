@@ -55,3 +55,6 @@ Credencias para teste
 ### 🧪 Testes
 Para rodar a suíte de testes unitários:
 ```mvn test```
+
+## Diagrama de classes do Projeto
+![diagrama]()

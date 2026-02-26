@@ -8,46 +8,30 @@
     <persistence-unit name="TarefasPU" transaction-type="RESOURCE_LOCAL">
         <!-- Provedor JPA (Hibernate) -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <non-jta-data-source>java:comp/env/jdbc/tarefasDS</non-jta-data-source>
         
         <!-- Configurações de conexão com o banco de dados -->
         <properties>
-            <!-- Propriedades específicas do Hibernate -->
-            <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
-            
-            <!-- Injeção de sql -->
-            <property name="hibernate.hbm2ddl.import_files" value="META-INF/import.sql"/>
-
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
-        </properties>
-        
-        
-        	<!-- login estatico para teste local -->
-          <!--  <properties>
-           
+            <!-- URL do banco de dados -->
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/task-manager"/>
             
-         
+            <!-- Driver JDBC -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             
-          
+            <!-- Usuário e senha -->
             <property name="javax.persistence.jdbc.user" value="postgres"/>
             <property name="javax.persistence.jdbc.password" value="12345678"/>
             
-            
+            <!-- Propriedades específicas do Hibernate -->
             <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create"/>
             
-           
+            <!-- Inicia um script SQL para inserir dados na tabela -->
             <property name="hibernate.hbm2ddl.import_files" value="META-INF/import.sql"/>
 
             
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-        </properties> -->
+        </properties>
     </persistence-unit>
 </persistence>

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context>
-	<Resource name="BeanManager" auth="Container"
-		type="javax.enterprise.inject.spi.BeanManager"
-		factory="org.jboss.weld.resources.ManagerObjectFactory" />
 
-	<Resource name="jdbc/tarefasDS" auth="Container"
-		type="javax.sql.DataSource"
-		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-		driverClassName="org.postgresql.Driver"
-		url="jdbc:postgresql://${db.host}:${db.port}/${db.name}"
-		username="${db.user}" password="${db.pass}" maxTotal="20" />
+<Context>
+		<Manager pathname=""/>
+		
+		<Resource
+		auth="Container"
+		name="BeanManager"
+		type="javax.enterprise.inject.spi.BeanManager"
+		factory="org.jboss.weld.resources.ManagerObjectFactory"/>
 </Context>

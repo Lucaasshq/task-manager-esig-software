@@ -22,9 +22,6 @@ import com.lucas.utils.Message;
 @ViewScoped
 public class TarefaBean implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -47,7 +44,7 @@ public class TarefaBean implements Serializable {
 		tarefa = new Tarefa();
 		filtroTarefas = new TarefaFiltroDto();
 	    responsaveis = responsavelService.listarTodos();
-	    tarefas = tarefaService.listarTodas();
+	    tarefas = tarefaService.listarAtivas();
 	    
 	}
 	
@@ -95,6 +92,16 @@ public class TarefaBean implements Serializable {
 			tarefas.remove(tarefa);
 		} catch (Exception e) {
 			System.out.println("Erro ao excluir tarefa: " + e.getMessage());
+		}
+	}
+	
+	public void concluirTarefa(Tarefa tarefa) {
+		try {
+			tarefaService.concluir(tarefa.getId());
+			this.tarefas = tarefaService.listarAtivas();
+			Message.addMessage(FacesMessage.SEVERITY_INFO, "Tarefa Conluida com sucesso!", null);
+		} catch (Exception e) {
+			Message.addMessage(FacesMessage.SEVERITY_ERROR, "Erro ao concluir tarefa: " + e.getMessage(), null);
 		}
 	}
 	

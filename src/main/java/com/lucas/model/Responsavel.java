@@ -91,6 +91,9 @@ public class Responsavel implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Responsavel [id=" + id + ", nome=" + nome + ", dataNascimento=" + dataNascimento + "]";
+		return "Responsavel [id=" + id + ", nome=" + nome + ", dataNascimento=" + dataNascimento + ", dataCadastro="
+				+ dataCadastro + "]";
 	}
+
+
 }

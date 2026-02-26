@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import com.lucas.model.Responsavel;
+import com.lucas.utils.Transactional;
 
 public class ResponsavelRepository {
 
@@ -27,8 +28,10 @@ public class ResponsavelRepository {
 	public Responsavel findById(Long id) {
 		return em.find(Responsavel.class, id);
 	}
-
+	
+	@Transactional
 	public void save(Responsavel responsavel) {
+		System.out.println(responsavel.toString());
 		if (responsavel.getId() == null) {
 			em.persist(responsavel);
 			return;
@@ -37,7 +40,7 @@ public class ResponsavelRepository {
 		}
 
 	}
-
+	@Transactional
 	public void delete(Responsavel responsavel) {
 		responsavel = findById(responsavel.getId());
 		em.remove(responsavel);

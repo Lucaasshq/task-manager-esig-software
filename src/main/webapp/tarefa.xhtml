@@ -19,7 +19,7 @@
 
 .card-cadastro, .card-listagem {
 	width: 100%;
-	max-width: 1100px;
+	max-width: 1650px;
 	margin-bottom: 25px;
 }
 
@@ -130,10 +130,10 @@
 
 
 
-						<p:column headerText="Ações">
+						<p:column headerText="Ações" style="display:flex; justify-content:center;">
 							<p:commandButton icon="pi pi-pencil"
-								styleClass="ui-button-success" process="@this" title="Editar"
-								action="#{tarefaBean.prepararEdicao(tarefa)}"
+								styleClass="ui-button-primary" process="@this" title="Editar"
+								actionListener="#{tarefaBean.prepararEdicao(tarefa)}"
 								oncomplete="PF('dlgEdicao').show()"
 								update="form-edicao:painel-edicao" />
 
@@ -144,6 +144,12 @@
 								<p:confirm header="Excluir Tarefa"
 									message="Deseja excluir esta tarefa?" />
 							</p:commandButton>
+							
+							<p:commandButton icon="pi pi-check"
+								styleClass=" ui-button-success" process="@this"
+								style="margin-left: 8px" title="Concluir"
+								action="#{tarefaBean.concluirTarefa(tarefa)}" update="dt-tarefas">
+							</p:commandButton>
 						</p:column>
 					</p:dataTable>
 				</p:card>
@@ -153,7 +159,7 @@
 					<p:commandButton value="Não" type="button"
 						styleClass="ui-confirmdialog-no ui-button-flat" />
 					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" />
+						styleClass="ui-confirmdialog-yes ui-button-danger" />
 				</p:confirmDialog>
 			</h:form>
 
@@ -213,6 +219,8 @@
 							action="#{tarefaBean.editarTarefa}"
 							update="form-filtro:dt-tarefas"
 							oncomplete="if (!args.validationFailed) PF('dlgEdicao').hide()" styleClass="ui-button-danger" />
+							
+							
 					</f:facet>
 
 				</p:dialog>

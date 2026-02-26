@@ -1,6 +1,7 @@
 package com.lucas.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -14,8 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -52,8 +51,7 @@ public class Tarefa implements Serializable {
 	
 	@NotNull(message = "A data de deadline é obrigatória!")
 	@Future(message = "A data não pode ser do passado")
-	@Temporal(TemporalType.DATE)
-	private Date deadLine;
+	private LocalDate deadLine;
 	
 	@NotNull(message = "O status é obrigatório!")
 	@Enumerated(EnumType.STRING)
@@ -99,11 +97,11 @@ public class Tarefa implements Serializable {
 		this.prioridade = prioridade;
 	}
 
-	public Date getDeadLine() {
+	public LocalDate getDeadLine() {
 		return deadLine;
 	}
 
-	public void setDeadLine(Date deadLine) {
+	public void setDeadLine(LocalDate deadLine) {
 		this.deadLine = deadLine;
 	}
 

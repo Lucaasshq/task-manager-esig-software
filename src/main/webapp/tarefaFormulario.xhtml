@@ -17,12 +17,12 @@
 }
 
 .card-cadastro {
-	width: 750px;
+	width: 800px;
 }
 
 .config-container {
 	display: flex;
-	gap: 15px;
+	gap: 30px;
 }
 
 .label-bold {
@@ -69,7 +69,7 @@
 							<p:message for="descricao" display="text"></p:message>
 						</h:panelGroup>
 
-						<p:outputLabel value="Configurações:" />
+						<p:outputLabel value="Responsavel:" />
 						<div class="config-container">
 							<h:panelGroup>
 								<p:selectOneMenu id="resp"
@@ -85,7 +85,7 @@
 							<h:panelGroup>
 								<p:selectOneMenu id="prio"
 									value="#{tarefaBean.tarefa.prioridade}">
-									<f:selectItem itemLabel="Selecione" />
+									<f:selectItem itemLabel="Prioridade" />
 									<f:selectItems value="#{tarefaBean.prioridades}"
 										var="prioridade" itemLabel="#{prioridade.descricao}"
 										itemValue="#{prioridade}" />

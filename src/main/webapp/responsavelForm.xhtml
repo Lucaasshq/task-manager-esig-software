@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="WEB-INF/template/Layout.xhtml">
+
+	<ui:define name="conteudo">
+
+		<style type="text/css">
+.main-container {
+	display: flex;
+	justify-content: center;
+	padding: 20px;
+	background-color: #f4f7f9;
+	min-height: 80vh;
+}
+
+.card-cadastro {
+	width: 750px;
+}
+
+.config-container {
+	display: flex;
+	gap: 15px;
+}
+
+.label-bold {
+	font-weight: bold;
+}
+
+.footer-actions {
+	text-align: right;
+}
+
+.icon-titulo {
+	color: #2196F3;
+	margin-right: 8px;
+}
+
+
+</style>
+
+		<div class="ui-fluid main-container">
+			<h:form id="form">
+			<p:growl id="growl" showDetail="true" />
+				<p:card styleClass="card-cadastro">
+					<f:facet name="title">
+						 Adicionar Responsável
+                    </f:facet>
+
+					<h:panelGrid columns="2"
+						columnClasses="ui-grid-col-3 label-bold, ui-grid-col-9"
+						style="width: 100%;" cellpadding="7">
+
+						<p:outputLabel for="nome" value="Nome" />
+						<h:panelGroup>
+							<p:inputText id="nome"
+								value="#{responsavelBean.responsavel.nome}"
+								placeholder="Ex: Lucas H" required="true" />
+							<p:message for="nome" display="text"></p:message>
+						</h:panelGroup>
+
+						<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
+						<h:panelGroup>
+							<p:inputMask id="dataNascimento" mask="99/99/9999"
+								style="background-color: white;"
+								value="#{responsavelBean.responsavel.dataNascimento}">
+								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+							</p:inputMask>
+
+							<p:message for="dataNascimento"></p:message>
+						</h:panelGroup>
+					</h:panelGrid>
+					<f:facet name="footer">
+						<div class="footer-actions">
+							<p:commandButton value="Salvar" icon="pi pi-check"
+								action="#{responsavelBean.salvarResponsavel}" update="@form" styleClass="ui-button-danger" />
+						</div>
+					</f:facet>
+				</p:card>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

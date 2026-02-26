@@ -21,6 +21,10 @@ public class TarefaService implements Serializable {
 	public List<Tarefa> listarTodas() {
 		return tarefaRepository.findAll();
 	}
+	
+	public List<Tarefa> listarAtivas(){
+		return tarefaRepository.findAllAtivas();
+	}
 
 	public Tarefa buscarPorId(Long id) {
 		return tarefaRepository.findById(id);
@@ -34,7 +38,7 @@ public class TarefaService implements Serializable {
 	
 	@Transactional
 	public void editar(Tarefa tarefa) {
-		tarefaRepository.editar(tarefa);
+		tarefaRepository.update(tarefa);
 	}
 	
 	@Transactional
@@ -48,7 +52,15 @@ public class TarefaService implements Serializable {
 		tarefa.setTitulo(filtro.getTitulo());
 		tarefa.setResponsavel(filtro.getResponsavel());
 		tarefa.setPrioridade(filtro.getPrioridade());
-		return tarefaRepository.pesquisar(tarefa);
+		return tarefaRepository.search(tarefa);
+	}
+	
+	@Transactional
+	public void concluir(Long id) {
+		Tarefa tarefa = tarefaRepository.findById(id);
+		if (tarefa != null) {
+			tarefa.setStatus(Status.CONCLUIDA);
+		}
 	}
 
 }

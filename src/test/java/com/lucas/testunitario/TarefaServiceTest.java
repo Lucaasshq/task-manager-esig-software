@@ -54,7 +54,7 @@ public class TarefaServiceTest {
 		tarefaTest.setPrioridade(Prioridade.ALTA);
 		tarefaTest.setStatus(Status.EM_ANDAMENTO);
 		tarefaTest.setResponsavel(responsavelTest);
-		tarefaTest.setDeadLine(Date.from(LocalDate.of(2024, 12, 31).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		tarefaTest.setDeadLine(LocalDate.of(2027, 12, 31));
 		
 		tarefaService.salvar(tarefaTest);
 		
@@ -104,7 +104,7 @@ public class TarefaServiceTest {
 		tarefaTest.setPrioridade(Prioridade.ALTA);
 		tarefaTest.setStatus(Status.CONCLUIDA);
 		tarefaTest.setResponsavel(responsavelTest);
-		tarefaTest.setDeadLine(Date.from(LocalDate.of(2024, 12, 31).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		tarefaTest.setDeadLine(LocalDate.of(2027, 12, 31));
 		
 		// quando o mock buscar por id 1 ele retorna a tarefaBanco
 		when(tarefaRepository.findById(1L)).thenReturn(tarefaBanco);
@@ -112,7 +112,7 @@ public class TarefaServiceTest {
 		tarefaService.editar(tarefaTest);
 		
 		// verifica se o metodo save foi chamada 1 vez
-		verify(tarefaRepository, times(1)).editar(tarefaTest);
+		verify(tarefaRepository, times(1)).update(tarefaTest);
 		
 		assertEquals("Novo Titulo", tarefaTest.getTitulo());
 		assertEquals(Status.CONCLUIDA, tarefaTest.getStatus());

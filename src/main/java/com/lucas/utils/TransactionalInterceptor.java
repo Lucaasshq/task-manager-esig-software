@@ -27,10 +27,7 @@ public class TransactionalInterceptor implements Serializable {
 
 		try {
 			if (!trx.isActive()) {
-				trx.begin(); 
-				trx.rollback(); 
-
-				trx.begin(); 
+				trx.begin();   
 				criador = true;
 			}
 			return context.proceed(); 

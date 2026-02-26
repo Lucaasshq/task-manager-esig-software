@@ -3,18 +3,18 @@ package com.lucas.repository;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import com.lucas.model.Status;
 import com.lucas.model.Tarefa;
 import com.lucas.utils.Transactional;
 
+
 public class TarefaRepository implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -38,6 +38,12 @@ public class TarefaRepository implements Serializable {
 		return em.find(Tarefa.class, id);
 	}
 	
+	public List<Tarefa> findAllAtivas(){
+		return em.createQuery("select t from Tarefa t where t.status <> :statusConcluido", Tarefa.class)
+				.setParameter("statusConcluido", Status.CONCLUIDA)
+				.getResultList();
+	}
+	
 	@Transactional
 	public void save(Tarefa tarefa) {
 		if (tarefa.getId() == null) {
@@ -49,7 +55,7 @@ public class TarefaRepository implements Serializable {
 	}
 	
 	@Transactional
-	public void editar(Tarefa tarefa) {
+	public void update(Tarefa tarefa) {
 			em.merge(tarefa);
 	}
 	
@@ -60,9 +66,11 @@ public class TarefaRepository implements Serializable {
 		em.remove(tarefa);
 	}
 	
-	public List<Tarefa> pesquisar(Tarefa filtro) {
+	public List<Tarefa> search(Tarefa filtro) {
 		
-		StringBuilder jpql = new StringBuilder("select t from Tarefa t where 1=1 ");
+		StringBuilder jpql = new StringBuilder("select t from Tarefa t where t.status <> :statusConcluido ");
+		
+		
 		
 		if (filtro.getId() != null) {
 			jpql.append("and t.id = :id ");
@@ -85,6 +93,10 @@ public class TarefaRepository implements Serializable {
 
 		
 		TypedQuery<Tarefa> query = em.createQuery(jpql.toString(), Tarefa.class);
+		
+		
+		query.setParameter("statusConcluido", Status.CONCLUIDA);
+		
 		
 		if(filtro.getId() != null) {
 			query.setParameter("id", filtro.getId());

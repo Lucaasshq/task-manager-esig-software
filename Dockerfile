@@ -20,4 +20,4 @@ COPY --from=build /app/target/task-esig.war webapps/ROOT.war
 # Porta padrãoo
 EXPOSE 8080
 
-CMD ["sh", "catalina.sh run"]
+CMD ["catalina.sh", "run"]

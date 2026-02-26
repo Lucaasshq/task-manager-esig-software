@@ -8,6 +8,7 @@
     <persistence-unit name="TarefasPU" transaction-type="RESOURCE_LOCAL">
         <!-- Provedor JPA (Hibernate) -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <non-jta-data-source>java:comp/env/jdbc/tarefasDS</non-jta-data-source>
         
         <!-- Configurações de conexão com o banco de dados -->
         <properties>

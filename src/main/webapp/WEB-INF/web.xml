@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
 	<display-name>cadastro-empresas</display-name>
 
 	<resource-ref>
@@ -9,7 +12,6 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
-
 	<welcome-file-list>
 		<!-- Arquivo de boas-vindas para a aplicacao -->
 		<welcome-file>tarefaFormulario.xhtml</welcome-file>
@@ -18,7 +20,8 @@
 
 	<!-- Configuracao de parametros de contexto para o JSF -->
 	<context-param>
-		<!-- Define o estagio do projeto: Development para desenvolvimento ou Production para producao -->
+		<!-- Define o estagio do projeto: Development para desenvolvimento ou Production 
+			para producao -->
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>

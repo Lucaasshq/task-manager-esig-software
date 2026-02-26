@@ -57,4 +57,4 @@ Para rodar a suíte de testes unitários:
 ```mvn test```
 
 ## Diagrama de classes do Projeto
-![diagrama]()
+![diagrama](https://github.com/Lucaasshq/task-manager-esig-software/blob/24ebf05eacf0dd2ac0d1ec995b2cd08433ff0bdd/diagrama/package.png)

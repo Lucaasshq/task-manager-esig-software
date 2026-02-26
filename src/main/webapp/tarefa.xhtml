@@ -1,0 +1,222 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="WEB-INF/template/Layout.xhtml">
+
+	<ui:define name="conteudo">
+
+		<style type="text/css">
+.main-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	background-color: #f4f7f9;
+	min-height: 80vh;
+}
+
+.card-cadastro, .card-listagem {
+	width: 100%;
+	max-width: 1100px;
+	margin-bottom: 25px;
+}
+
+.config-container {
+	display: flex;
+	gap: 15px;
+}
+
+.label-bold {
+	font-weight: bold;
+}
+
+.footer-actions {
+	text-align: right;
+}
+</style>
+
+		<div class="ui-fluid main-container">
+			<h:form id="form-filtro">
+				<p:card styleClass="card-cadastro">
+					<f:facet name="title">
+						Pesquisar Tarefas
+					</f:facet>
+
+					<h:panelGrid columns="2"
+						columnClasses="ui-grid-col-3 label-bold, ui-grid-col-9"
+						style="width: 100%;" cellpadding="7">
+
+						<p:outputLabel for="id" value="Id:" />
+						<p:inputText id="id" value="#{tarefaBean.filtroTarefas.id}"
+							placeholder="Ex: 1" />
+
+						<p:outputLabel for="titulo" value="Título da Tarefa:" />
+						<p:inputText id="titulo"
+							value="#{tarefaBean.filtroTarefas.titulo}"
+							placeholder="Ex: Finalizar relatório" />
+
+
+						<p:outputLabel value="Configurações:" />
+						<div class="config-container">
+							<p:selectOneMenu id="resp"
+								value="#{tarefaBean.filtroTarefas.responsavel}" filter="true"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="Selecione o Responsável" itemValue="" />
+								<f:selectItems value="#{tarefaBean.responsaveis}" var="respon"
+									itemLabel="#{respon.nome}" itemValue="#{respon}" />
+							</p:selectOneMenu>
+
+							<p:selectOneMenu id="prio"
+								value="#{tarefaBean.filtroTarefas.prioridade}">
+								<f:selectItem itemLabel="Prioridade" itemValue="" />
+								<f:selectItems value="#{tarefaBean.prioridades}"
+									var="prioridade" itemLabel="#{prioridade.descricao}"
+									itemValue="#{prioridade}" />
+							</p:selectOneMenu>
+						</div>
+					</h:panelGrid>
+
+					<f:facet name="footer">
+						<div class="footer-actions">
+							<p:commandButton value="Filtrar" icon="pi pi-check"
+								action="#{tarefaBean.filtrar}" update="dt-tarefas"
+								process="@form id titulo resp prio" styleClass="ui-button-danger" />
+
+						</div>
+					</f:facet>
+				</p:card>
+
+				<p:card styleClass="card-listagem">
+					<f:facet name="title">
+						Tarefas Cadastradas
+				    </f:facet>
+
+					<p:dataTable id="dt-tarefas"
+						emptyMessage="Nenhuma tarefa encontrada" paginator="true" rows="5"
+						paginatorPosition="bottom" value="#{tarefaBean.listaTarefas}"
+						var="tarefa">
+
+						<p:column headerText="Id">
+							<h:outputText value="#{tarefa.id}" />
+						</p:column>
+
+						<p:column headerText="Titulo">
+							<h:outputText value="#{tarefa.titulo}" />
+						</p:column>
+
+						<p:column headerText="Descrição">
+							<h:outputText value="#{tarefa.descricao}" />
+						</p:column>
+
+						<p:column headerText="Responsavel">
+							<h:outputText value="#{tarefa.responsavel.nome}" />
+						</p:column>
+
+						<p:column headerText="Dead line">
+							<h:outputText value="#{tarefa.deadLine}" />
+						</p:column>
+
+						<p:column headerText="Prioridade">
+							<p:tag value="#{tarefa.prioridade.descricao}"
+								severity="#{tarefa.prioridade == 'ALTA' ? 'danger' : (tarefa.prioridade == 'MEDIA' ? 'warning' : 'info')}" />
+						</p:column>
+
+						<p:column headerText="Status">
+							<h:outputText value="#{tarefa.status}" />
+						</p:column>
+
+
+
+
+						<p:column headerText="Ações">
+							<p:commandButton icon="pi pi-pencil"
+								styleClass="ui-button-success" process="@this" title="Editar"
+								action="#{tarefaBean.prepararEdicao(tarefa)}"
+								oncomplete="PF('dlgEdicao').show()"
+								update="form-edicao:painel-edicao" />
+
+							<p:commandButton icon="pi pi-trash"
+								styleClass=" ui-button-warning" process="@this"
+								style="margin-left: 8px" title="Excluir"
+								action="#{tarefaBean.deletarTarefa(tarefa)}" update="dt-tarefas">
+								<p:confirm header="Excluir Tarefa"
+									message="Deseja excluir esta tarefa?" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:card>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					responsive="true" width="350">
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no ui-button-flat" />
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" />
+				</p:confirmDialog>
+			</h:form>
+
+			<h:form id="form-edicao">
+				<p:dialog header="Editar Detalhes da Tarefa" widgetVar="dlgEdicao"
+					modal="true" showEffect="fade" hideEffect="fade" responsive="true"
+					width="500">
+
+
+
+					<p:outputPanel id="painel-edicao" class="ui-fluid">
+
+						<p:outputLabel for="e-titulo" value="Título" />
+						<p:inputText id="e-titulo" value="#{tarefaBean.tarefa.titulo}" />
+
+
+						<p:outputLabel for="e-desc" value="Descrição" />
+						<p:inputTextarea id="e-desc"
+							value="#{tarefaBean.tarefa.descricao}" rows="3" />
+
+
+						<h:panelGrid columns="2" style="width:100%"
+							columnClasses="ui-grid-col-6, ui-grid-col-6">
+							<h:panelGroup>
+								<p:outputLabel value="Responsável" />
+								<p:selectOneMenu value="#{tarefaBean.tarefa.responsavel}"
+									converter="omnifaces.SelectItemsConverter">
+									<f:selectItems value="#{tarefaBean.responsaveis}" var="r"
+										itemLabel="#{r.nome}" itemValue="#{r}" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel value="Prioridade" />
+								<p:selectOneMenu value="#{tarefaBean.tarefa.prioridade}">
+									<f:selectItems value="#{tarefaBean.prioridades}" var="p"
+										itemLabel="#{p.descricao}" itemValue="#{p}" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel value="Status" />
+								<p:selectOneMenu value="#{tarefaBean.tarefa.status}">
+									<f:selectItems value="#{tarefaBean.status}" var="s"
+										itemLabel="#{s}" itemValue="#{s}" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+						</h:panelGrid>
+					</p:outputPanel>
+
+					<f:facet name="footer">
+						<p:commandButton value="Cancelar" icon="pi pi-times"
+							onclick="PF('dlgEdicao').hide()"
+							styleClass="ui-button-flat ui-button-secondary" />
+
+						<p:commandButton value="Salvar Alterações" icon="pi pi-save"
+							action="#{tarefaBean.editarTarefa}"
+							update="form-filtro:dt-tarefas"
+							oncomplete="if (!args.validationFailed) PF('dlgEdicao').hide()" styleClass="ui-button-danger" />
+					</f:facet>
+
+				</p:dialog>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

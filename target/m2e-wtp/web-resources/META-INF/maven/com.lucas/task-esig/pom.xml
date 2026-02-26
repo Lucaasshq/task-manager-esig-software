@@ -1,0 +1,154 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.lucas</groupId>
+	<artifactId>task-esig</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>task-esig</name>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<!-- Source: https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Source: https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.12.4</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!--
+		https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet-core -->
+		<!-- Weld é uma implementação de CDI (Contexts and Dependency
+		Injection). 
+       Ele fornece injeção de dependências para os componentes JSF, permitindo uma 
+       gestão mais eficiente do ciclo de vida dos objetos. É essencial para usar CDI
+		em um projeto JSF. -->
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet-core</artifactId>
+			<version>3.1.7.Final</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.glassfish/javax.faces -->
+		<!-- JSF (JavaServer Faces) é uma especificação para construção de
+		interfaces web em Java. Essa dependência inclui a implementação da
+		especificação JSF,
+		permitindo o uso de tags JSF para criar interfaces dinâmicas e interativas. -->
+		<!-- https://mvnrepository.com/artifact/org.glassfish/javax.faces -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+		<!-- PrimeFaces é uma biblioteca de componentes JSF que oferece uma
+		ampla variedade de componentes UI (User Interface), como tabelas, gráficos,
+		botões e menus. 
+       Essa dependência ajuda a criar interfaces mais ricas e interativas com
+		facilidade. -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>12.0.0</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<!-- A API Servlet fornece a interface para a criação de servlets Java, 
+       que são componentes responsáveis por processar requisições HTTP e gerar 
+       respostas no servidor. Essa dependência é necessária para a execução 
+       de aplicativos web baseados em servlets, como JSF. -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+		<!-- Hibernate Validator é uma implementação da especificação Bean
+		Validation 
+       (JSR 303/JSR 380), permitindo validar objetos Java de acordo com restrições 
+       definidas nas classes. É usado para garantir que os dados do usuário ou 
+       de outras fontes estejam corretos antes de serem processados ou persistidos. -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.1.0.Final</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>3.13</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<!-- Hibernate Core é uma das ferramentas mais populares para mapeamento
+		objeto-relacional (ORM) em Java. 
+       Ele facilita a persistência de objetos Java em bancos de dados relacionais. 
+       Essa dependência é fundamental para o uso de Hibernate em projetos Java. -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.6.15.Final</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<!-- O driver JDBC do PostgreSQL permite que a aplicação Java se conecte
+		a bancos 
+       de dados PostgreSQL. Essa dependência é necessária quando se usa PostgreSQL 
+       como banco de dados em um projeto Java. -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.4</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.2.3</version>
+			<scope>compile</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

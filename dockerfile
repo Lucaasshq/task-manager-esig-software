@@ -17,7 +17,7 @@ RUN rm -rf webapps/*
 
 COPY --from=build /app/target/task-esig.war webapps/ROOT.war
 
-# Porta padrão
+# Porta padrãoo
 EXPOSE 8080
 
 CMD ["sh", "-c", "catalina.sh run -Ddb.url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -Ddb.user=${PGUSER} -Ddb.password=${PGPASSWORD}"]

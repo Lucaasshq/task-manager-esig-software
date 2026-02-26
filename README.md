@@ -55,6 +55,7 @@ Credencias para teste
 ### 🧪 Testes
 Para rodar a suíte de testes unitários:
 ```mvn test```
+ou então dentro da idea vá na pasta ```test``` do java e execute atráves da propria IDE
 
 ## Diagrama de classes do Projeto
 ![diagrama](https://github.com/Lucaasshq/task-manager-esig-software/blob/24ebf05eacf0dd2ac0d1ec995b2cd08433ff0bdd/diagrama/package.png)

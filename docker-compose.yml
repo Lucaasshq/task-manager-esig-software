@@ -1,16 +1,16 @@
-version: "3.8"  # Versão do docker-compose
+version: "3.8" 
 
-services:       # Lista dos serviços que vão rodar
+services:      
 
-  db: # Serviço do banco de dados
-    image: postgres:15  # Usa o PostgreSQL versão 15
-    container_name: postgres-banco  # Nome do container do banco
-    environment: # Configura o banco com usuário, senha e nome do banco
+  db: 
+    image: postgres:15  
+    container_name: postgres-banco 
+    environment:
       POSTGRES_DB: task-manager
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: "12345678"
     ports:
-      - "5432:5432"  # Liga a porta 5432 do container com a do computador
+      - "5432:5432" 
     volumes:
       - pgdata:/var/lib/postgresql/data  # Salva os dados para não perder quando parar o container
 
@@ -19,5 +19,6 @@ volumes:
   
   
   
-  ## comando para subir imagem do postgres
-## docker compose up -d
+## comando para subir imagem do postgres
+## docker-compose up -d
+## by Lucaasshq

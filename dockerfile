@@ -1,17 +1,23 @@
-FROM maven:3.8.4-jdk-8-slim AS buildn
-COPY src /app/src
-COPY pom.xml /app
-RUN mvn -f /app/pom.xml clean package -DskipTests
+
+FROM maven:3.8.4-jdk-8-slim AS build
+WORKDIR /app
+COPY . .
+
+RUN mvn clean package -DskipTests
+
 
 FROM tomcat:9.0-jdk8-openjdk-slim
 
-# Remove as aplicações padrão do Tomcat para limpar o ambiente
-RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copia o arquivo .war gerado no estágio de build para o Tomcat
-COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
+WORKDIR /usr/local/tomcat
 
+
+RUN rm -rf webapps/*
+
+
+COPY --from=build /app/target/task-esig.war webapps/ROOT.war
+
+# Porta padrão
 EXPOSE 8080
 
-# Comando para iniciar o Tomcat
 CMD ["sh", "-c", "catalina.sh run -Ddb.url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -Ddb.user=${PGUSER} -Ddb.password=${PGPASSWORD}"]

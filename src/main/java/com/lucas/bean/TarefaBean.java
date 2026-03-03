@@ -90,6 +90,7 @@ public class TarefaBean implements Serializable {
 		try {
 			tarefaService.excluir(tarefa);
 			tarefas.remove(tarefa);
+			Message.addMessage(FacesMessage.SEVERITY_INFO, "Tarefa Excluida com sucesso!", null);
 		} catch (Exception e) {
 			System.out.println("Erro ao excluir tarefa: " + e.getMessage());
 		}

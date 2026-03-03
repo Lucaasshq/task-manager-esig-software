@@ -38,6 +38,7 @@
 </style>
 
 		<div class="ui-fluid main-container">
+		<p:growl id="growl" showDetail="true"/>
 			<h:form  id="form-filtro">
 				<p:card styleClass="card-cadastro">
 					<f:facet name="title">
@@ -135,12 +136,12 @@
 								styleClass="ui-button-primary" process="@this" title="Editar"
 								actionListener="#{tarefaBean.prepararEdicao(tarefa)}"
 								oncomplete="PF('dlgEdicao').show()"
-								update="form-edicao:painel-edicao" />
+								update="form-edicao:painel-edicao :growl"/>
 
 							<p:commandButton icon="pi pi-trash"
 								styleClass=" ui-button-warning" process="@this"
 								style="margin-left: 8px" title="Excluir"
-								action="#{tarefaBean.deletarTarefa(tarefa)}" update="dt-tarefas">
+								action="#{tarefaBean.deletarTarefa(tarefa)}" update="dt-tarefas :growl">
 								<p:confirm header="Excluir Tarefa"
 									message="Deseja excluir esta tarefa?" />
 							</p:commandButton>
@@ -148,7 +149,7 @@
 							<p:commandButton icon="pi pi-check"
 								styleClass=" ui-button-success" process="@this"
 								style="margin-left: 8px" title="Concluir"
-								action="#{tarefaBean.concluirTarefa(tarefa)}" update="dt-tarefas">
+								action="#{tarefaBean.concluirTarefa(tarefa)}" update="dt-tarefas :growl">
 							</p:commandButton>
 						</p:column>
 					</p:dataTable>
@@ -159,7 +160,7 @@
 					<p:commandButton value="Não" type="button"
 						styleClass="ui-confirmdialog-no ui-button-flat" />
 					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes ui-button-danger" />
+						styleClass="ui-confirmdialog-yes ui-button-danger" update=":growl" />
 				</p:confirmDialog>
 			</h:form>
 
@@ -217,7 +218,7 @@
 
 						<p:commandButton value="Salvar Alterações" icon="pi pi-save"
 							action="#{tarefaBean.editarTarefa}"
-							update="form-filtro:dt-tarefas"
+							update="form-filtro:dt-tarefas :growl"
 							oncomplete="if (!args.validationFailed) PF('dlgEdicao').hide()" styleClass="ui-button-danger" />
 							
 							
